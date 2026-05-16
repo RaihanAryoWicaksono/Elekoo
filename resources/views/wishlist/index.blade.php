@@ -11,9 +11,13 @@
 
     @if($wishlists->isEmpty())
         <div class="card p-12 text-center flex flex-col items-center justify-center">
-            <div class="w-24 h-24 bg-dark-700 rounded-full flex items-center justify-center text-red-400 mb-6">
-                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-            </div>
+            <svg class="w-48 h-48 mb-6 opacity-80" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="90" fill="#1e293b"/>
+                <path d="M100 148 L55 103 C44 92 44 74 55 63 C61 57 69 54 77 54 C85 54 93 57 100 63 C107 57 115 54 123 54 C131 54 139 57 145 63 C156 74 156 92 145 103 Z" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2.5"/>
+                <path d="M100 130 L65 95 C57 87 57 76 65 68 C69 64 74 62 79 62 C84 62 89 64 100 73" stroke="#60a5fa" stroke-width="2" fill="none" opacity="0.5"/>
+                <circle cx="148" cy="62" r="22" fill="#1a1a2e" stroke="#f97316" stroke-width="2"/>
+                <path d="M140 62 L148 54 L156 62 M148 54 L148 70" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <h2 class="text-2xl font-bold text-white mb-2">Wishlist Kosong</h2>
             <p class="text-dark-400 max-w-md mb-8">Anda belum menambahkan produk favorit. Simpan produk yang Anda suka di sini untuk dibeli nanti.</p>
             <a href="{{ route('shop.index') }}" class="btn-primary text-lg px-8">Jelajahi Produk</a>

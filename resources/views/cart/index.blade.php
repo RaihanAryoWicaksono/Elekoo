@@ -8,9 +8,16 @@
 
     @if(!$cart || $cart->items->isEmpty())
         <div class="card p-12 text-center flex flex-col items-center justify-center">
-            <div class="w-24 h-24 bg-dark-700 rounded-full flex items-center justify-center text-dark-400 mb-6">
-                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-            </div>
+            <svg class="w-48 h-48 mb-6 opacity-80" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="90" fill="#1e293b"/>
+                <rect x="50" y="65" width="100" height="75" rx="12" fill="#334155" stroke="#475569" stroke-width="2"/>
+                <path d="M70 65 L70 52 Q70 42 80 42 L120 42 Q130 42 130 52 L130 65" stroke="#64748b" stroke-width="3" stroke-linecap="round" fill="none"/>
+                <circle cx="78" cy="152" r="10" fill="#475569" stroke="#64748b" stroke-width="2"/>
+                <circle cx="122" cy="152" r="10" fill="#475569" stroke="#64748b" stroke-width="2"/>
+                <path d="M82 95 L90 103 L108 85" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="155" cy="55" r="18" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+                <text x="155" y="61" text-anchor="middle" fill="#60a5fa" font-size="18" font-weight="bold">?</text>
+            </svg>
             <h2 class="text-2xl font-bold text-white mb-2">Keranjang Masih Kosong</h2>
             <p class="text-dark-400 max-w-md mb-8">Anda belum menambahkan produk apa pun ke keranjang. Mari mulai berbelanja dan temukan gadget impian Anda!</p>
             <a href="{{ route('shop.index') }}" class="btn-primary text-lg px-8">Mulai Belanja</a>
