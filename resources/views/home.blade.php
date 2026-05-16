@@ -6,7 +6,7 @@
 {{-- Hero Section --}}
 <div class="relative overflow-hidden bg-dark-900 border-b border-dark-800">
     <div class="absolute inset-0 bg-hero-gradient opacity-50"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-20 pb-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-16 pb-12">
         <div class="text-center max-w-3xl mx-auto animate-slide-up">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-400 text-sm font-medium mb-6">
                 <span class="relative flex h-2 w-2">
@@ -25,42 +25,60 @@
                 <a href="{{ route('shop.index') }}" class="btn-primary text-lg px-8 py-4">Mulai Belanja</a>
                 <a href="#categories" class="btn-outline text-lg px-8 py-4">Lihat Kategori</a>
             </div>
+
+            {{-- Social Proof --}}
+            <div class="flex items-center justify-center gap-8 mt-12 pt-8 border-t border-dark-700/50">
+                <div class="text-center">
+                    <div class="text-2xl font-black text-white">10.000+</div>
+                    <div class="text-xs text-dark-400 mt-0.5">Produk Tersedia</div>
+                </div>
+                <div class="w-px h-10 bg-dark-700"></div>
+                <div class="text-center">
+                    <div class="text-2xl font-black text-white">5.000+</div>
+                    <div class="text-xs text-dark-400 mt-0.5">Pelanggan Puas</div>
+                </div>
+                <div class="w-px h-10 bg-dark-700"></div>
+                <div class="text-center">
+                    <div class="text-2xl font-black text-white">4.9 ★</div>
+                    <div class="text-xs text-dark-400 mt-0.5">Rating Rata-rata</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 {{-- Categories Section --}}
-<div id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="flex items-end justify-between mb-10">
+<div id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12">
+    <div class="flex items-center justify-between mb-8">
         <div>
-            <h2 class="section-title">Kategori Pilihan</h2>
-            <p class="section-subtitle">Jelajahi produk berdasarkan kategori favorit Anda</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-1">Kategori Pilihan</h2>
+            <p class="text-dark-400 text-sm">Jelajahi produk berdasarkan kategori favorit Anda</p>
         </div>
-        <a href="{{ route('shop.index') }}" class="text-primary-400 hover:text-primary-300 font-medium hidden sm:block">Lihat Semua &rarr;</a>
+        <a href="{{ route('shop.index') }}" class="text-primary-400 hover:text-primary-300 font-medium hidden sm:block text-sm">Lihat Semua &rarr;</a>
     </div>
 
-    <div class="flex flex-wrap items-center justify-start lg:justify-center gap-4 sm:gap-6">
+    <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         @foreach($categories->take(6) as $category)
-            <a href="{{ route('shop.index', ['category' => $category->slug]) }}" class="card-hover p-6 text-center group w-[45%] sm:w-48 flex-shrink-0">
-                <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-dark-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary-500/20 transition-all duration-300">
+            <a href="{{ route('shop.index', ['category' => $category->slug]) }}" class="card-hover p-4 text-center group">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-dark-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary-500/20 transition-all duration-300">
                     @if($category->image)
-                        <img src="{{ \Illuminate\Support\Str::startsWith($category->image, ['http://', 'https://']) ? $category->image : Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-12 h-12 object-contain">
+                        <img src="{{ \Illuminate\Support\Str::startsWith($category->image, ['http://', 'https://']) ? $category->image : Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-10 h-10 object-contain">
                     @else
-                        <svg class="w-10 h-10 text-dark-400 group-hover:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <svg class="w-8 h-8 text-dark-400 group-hover:text-primary-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                     @endif
                 </div>
-                <h3 class="font-medium text-white group-hover:text-primary-400 transition-colors text-lg">{{ $category->name }}</h3>
+                <h3 class="font-medium text-white group-hover:text-primary-400 transition-colors text-sm leading-tight">{{ $category->name }}</h3>
             </a>
         @endforeach
     </div>
 </div>
 
 {{-- Featured Products --}}
-<div class="bg-dark-950 py-20 border-y border-dark-800">
+<div class="bg-dark-950 py-12 border-y border-dark-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="section-title">Produk Unggulan</h2>
-            <p class="section-subtitle">Gadget terbaik pilihan Elekoo minggu ini</p>
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-1">Produk Unggulan</h2>
+            <p class="text-dark-400 text-sm">Gadget terbaik pilihan Elekoo minggu ini</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -72,13 +90,13 @@
 </div>
 
 {{-- New Arrivals --}}
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="flex items-end justify-between mb-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex items-center justify-between mb-8">
         <div>
-            <h2 class="section-title">Rilis Terbaru</h2>
-            <p class="section-subtitle">Jangan lewatkan teknologi terbaru yang baru tiba</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-1">Rilis Terbaru</h2>
+            <p class="text-dark-400 text-sm">Jangan lewatkan teknologi terbaru yang baru tiba</p>
         </div>
-        <a href="{{ route('shop.index', ['sort' => 'newest']) }}" class="text-primary-400 hover:text-primary-300 font-medium hidden sm:block">Lihat Semua &rarr;</a>
+        <a href="{{ route('shop.index', ['sort' => 'newest']) }}" class="text-primary-400 hover:text-primary-300 font-medium hidden sm:block text-sm">Lihat Semua &rarr;</a>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
