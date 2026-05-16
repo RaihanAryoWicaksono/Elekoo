@@ -11,10 +11,10 @@
         {{-- Badges --}}
         <div class="absolute top-3 left-3 flex flex-col gap-2">
             @if($product->discount_percentage)
-                <span class="badge bg-red-500 text-white shadow-lg">-{{ $product->discount_percentage }}%</span>
+                <span class="badge bg-red-500 text-white shadow-lg font-bold text-xs tracking-wide">HEMAT {{ $product->discount_percentage }}%</span>
             @endif
             @if($product->is_featured)
-                <span class="badge bg-accent-500 text-white shadow-lg">Featured</span>
+                <span class="badge bg-amber-500 text-white shadow-lg font-bold text-xs tracking-wide">🔥 TERLARIS</span>
             @endif
         </div>
 
@@ -43,7 +43,7 @@
                     </svg>
                 @endfor
             </div>
-            <span class="text-xs text-dark-400 ml-1">({{ $product->review_count }})</span>
+            <span class="text-xs text-dark-400 ml-1">{{ $product->review_count }} ulasan</span>
         </div>
 
         <div class="mt-auto">
