@@ -230,7 +230,7 @@ class DatabaseSeeder extends Seeder
             'order_id' => $order1->id,
             'product_id' => $createdProducts[0]->id, // MacBook Pro
             'product_name' => $createdProducts[0]->name,
-            'product_price' => $createdProducts[0]->price,
+            'price' => $createdProducts[0]->price,
             'quantity' => 1,
             'subtotal' => $createdProducts[0]->price
         ]);
@@ -239,7 +239,7 @@ class DatabaseSeeder extends Seeder
             'order_id' => $order1->id,
             'product_id' => $createdProducts[8]->id, // Logitech MX Master
             'product_name' => $createdProducts[8]->name,
-            'product_price' => $createdProducts[8]->price,
+            'price' => $createdProducts[8]->price,
             'quantity' => 1,
             'subtotal' => $createdProducts[8]->price
         ]);
@@ -268,7 +268,7 @@ class DatabaseSeeder extends Seeder
             'order_id' => $order2->id,
             'product_id' => $createdProducts[4]->id, // iPhone 15 Pro Max
             'product_name' => $createdProducts[4]->name,
-            'product_price' => $createdProducts[4]->price,
+            'price' => $createdProducts[4]->price,
             'quantity' => 1,
             'subtotal' => $createdProducts[4]->price
         ]);
@@ -296,7 +296,7 @@ class DatabaseSeeder extends Seeder
             'order_id' => $order3->id,
             'product_id' => $createdProducts[6]->id, // Sony WH-1000XM5
             'product_name' => $createdProducts[6]->name,
-            'product_price' => $createdProducts[6]->price,
+            'price' => $createdProducts[6]->price,
             'quantity' => 1,
             'subtotal' => $createdProducts[6]->price
         ]);
