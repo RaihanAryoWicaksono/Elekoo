@@ -25,6 +25,23 @@
     </div>
 </div>
 
+{{-- Weekly Sales Chart --}}
+<div class="card p-6 mb-8">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h3 class="text-lg font-bold text-white">Grafik Penjualan</h3>
+            <p class="text-sm text-dark-400">7 hari terakhir</p>
+        </div>
+        <div class="flex items-center gap-4 text-xs text-dark-400">
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-primary-500 inline-block"></span> Pendapatan</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-accent-500 inline-block"></span> Pesanan</span>
+        </div>
+    </div>
+    <div class="relative h-64">
+        <canvas id="salesChart"></canvas>
+    </div>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     {{-- Recent Orders --}}
     <div class="lg:col-span-2">
@@ -130,3 +147,84 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+(function () {
+    const data = @json($weeklySales);
+    const labels  = data.map(d => d.label);
+    const revenue = data.map(d => d.revenue);
+    const orders  = data.map(d => d.orders);
+
+    new Chart(document.getElementById('salesChart'), {
+        data: {
+            labels,
+            datasets: [
+                {
+                    type: 'bar',
+                    label: 'Pendapatan (Rp)',
+                    data: revenue,
+                    backgroundColor: 'rgba(59,130,246,0.25)',
+                    borderColor: '#3b82f6',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    yAxisID: 'y',
+                },
+                {
+                    type: 'line',
+                    label: 'Jumlah Pesanan',
+                    data: orders,
+                    borderColor: '#06b6d4',
+                    backgroundColor: 'rgba(6,182,212,0.15)',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: '#06b6d4',
+                    pointRadius: 4,
+                    tension: 0.4,
+                    fill: true,
+                    yAxisID: 'y1',
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    borderColor: '#334155',
+                    borderWidth: 1,
+                    titleColor: '#f1f5f9',
+                    bodyColor: '#94a3b8',
+                    callbacks: {
+                        label: ctx => ctx.datasetIndex === 0
+                            ? ' Rp ' + ctx.raw.toLocaleString('id-ID')
+                            : ' ' + ctx.raw + ' pesanan',
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    grid: { color: 'rgba(71,85,105,0.3)' },
+                    ticks: { color: '#64748b' },
+                },
+                y: {
+                    position: 'left',
+                    grid: { color: 'rgba(71,85,105,0.3)' },
+                    ticks: {
+                        color: '#64748b',
+                        callback: v => 'Rp ' + (v >= 1000000 ? (v/1000000).toFixed(1) + 'jt' : v.toLocaleString('id-ID')),
+                    },
+                },
+                y1: {
+                    position: 'right',
+                    grid: { display: false },
+                    ticks: { color: '#64748b' },
+                },
+            },
+        },
+    });
+})();
+</script>
+@endpush

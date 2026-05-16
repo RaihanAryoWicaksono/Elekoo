@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
@@ -35,9 +36,20 @@ class DashboardController extends Controller
             'cancelled'  => Order::where('status', 'cancelled')->count(),
         ];
 
+        $weeklySales = collect(range(6, 0))->map(function ($daysAgo) {
+            $date = Carbon::now()->subDays($daysAgo);
+            return [
+                'label'   => $date->locale('id')->isoFormat('ddd D/M'),
+                'revenue' => Order::where('payment_status', 'paid')
+                    ->whereDate('created_at', $date->toDateString())
+                    ->sum('total'),
+                'orders'  => Order::whereDate('created_at', $date->toDateString())->count(),
+            ];
+        });
+
         return view('admin.dashboard', compact(
             'totalProducts', 'totalOrders', 'totalRevenue', 'totalCustomers',
-            'recentOrders', 'topProducts', 'orderStats'
+            'recentOrders', 'topProducts', 'orderStats', 'weeklySales'
         ));
     }
 }

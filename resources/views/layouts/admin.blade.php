@@ -6,6 +6,7 @@
     <title>@yield('title', 'Admin Dashboard') | Elekoo Admin</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body class="bg-dark-950 text-dark-100 font-sans antialiased min-h-screen flex" x-data="{ sidebarOpen: false }">
 
@@ -93,5 +94,6 @@
         </main>
     </div>
 
+    @stack('scripts')
 </body>
 </html>
